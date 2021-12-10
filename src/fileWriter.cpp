@@ -34,6 +34,10 @@ int main()
     email.reserve(50);
     std::cout << "The size of name is " << name.length() << " bytes.\n";
     
+    //Reads the first 3 characters because they are not part of the file's content
+    ifs.get();
+    ifs.get();
+    ifs.get();
 
 
     while (std::getline(ifs, line)) {
@@ -49,8 +53,8 @@ int main()
             email = "";
 
             stream >> id >> name >> lastname >> email;
-
-
+             cout <<name << "'s id is: "<< id << endl;
+            cout<<line;
             if (id == 0)
             {
                 string error = "Error in line \"" + line + "\". ID can't be 0.";
@@ -58,7 +62,7 @@ int main()
                 throw error;
             }
 
-            cout << << name << "'s line is correct." << endl;
+            cout << name << "'s line is correct." << endl;
             file << id <<" "<< name << " "<<lastname<<" " << email << std::endl;
         }
         catch (string &excepcion)

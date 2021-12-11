@@ -1,39 +1,26 @@
 #include <fstream>
 #include <iostream>
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <sstream>
-
+#include <string>
 using namespace std;
 
 
 int main()
 {
 
-    std::ifstream ifs("Personas copy.txt", std::ifstream::in);
+    std::ifstream ifs("Personas.txt", std::ifstream::in);
         if (!ifs.is_open())
         {
-            std::cerr << "Error leyendo archivo personas.txt" << std::endl;
+            std::cerr << "File \"Personas.txt\" can't be found" << std::endl;
             return -1;
         }
 
     std::ofstream file("Personas.dat", std::ofstream::out);
 
-
+    //string where the line in the text file will be stored
     string line {""};
 
-    int id {0};
-    string name;
-    name.reserve(15);
 
-    string lastname;
-    lastname.reserve(15);
-
-    string email;
-    email.reserve(50);
-    std::cout << "The size of name is " << name.length() << " bytes.\n";
-    
     //Reads the first 3 characters because they are not part of the file's content
     ifs.get();
     ifs.get();
@@ -47,22 +34,76 @@ int main()
 
             std::istringstream stream(line);
 
-            id = 0;
-            name = "";
-            lastname = "";
-            email = "";
+            //variables where read values will be stored and then printed 
+            int id {0};
+            char name[16]={' '};
+            char lastname[16]={' '};
+            char email[51]={' '};
 
-            stream >> id >> name >> lastname >> email;
-             cout <<name << "'s id is: "<< id << endl;
-            cout<<line;
-            if (id == 0)
-            {
-                string error = "Error in line \"" + line + "\". ID can't be 0.";
-                
-                throw error;
+            //string to store string values temporarily 
+            string temp;
+
+            
+            //id in text file is stored in int id
+            stream >> id;
+
+            //name in text file is stored in string temp
+            stream >> temp;
+
+            //if temp string is longer that 15 characters, only the first 15 are stored in name 
+            if (temp.size()>15){
+                for (int i = 0; i < 15; i++)
+                {
+                    name[i]=temp.at(i);
+                    
+                }
+            }
+            else{
+                for (int i = 0; i < temp.size(); i++)
+                {
+                    name[i]=temp.at(i);
+                }
             }
 
-            cout << name << "'s line is correct." << endl;
+
+            //lastname in text file is stored in string temp
+            stream >> temp;
+
+            //if temp string is longer that 15 characters, only the first 15 are stored in lastname 
+            if (temp.size()>15){
+                for (int i = 0; i < 15; i++)
+                {
+                    lastname[i]=temp.at(i);
+            
+                }
+            }
+            else{
+                for (int i = 0; i < temp.size(); i++)
+                {
+                    lastname[i]=temp.at(i);
+                }
+            }
+            
+            //email in text file is stored in string temp
+            stream >> temp;
+            
+            //if temp string is longer that 50 characters, only the first 50 are stored in email 
+            if (temp.size()>50){
+                for (int i = 0; i < 50; i++)
+                {
+                    email[i]=temp.at(i);
+            
+                }
+            }
+            else{
+                for (int i = 0; i < temp.size(); i++)
+                {
+                    email[i]=temp.at(i);
+                }
+            }
+            
+    
+
             file << id <<" "<< name << " "<<lastname<<" " << email << std::endl;
         }
         catch (string &excepcion)

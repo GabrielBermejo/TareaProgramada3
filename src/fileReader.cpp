@@ -1,40 +1,38 @@
-#include <fstream>
 #include <iostream>
-#include <sstream>
+#include <fstream>
 #include <string>
-#include "fileWriter.h"
+#include <sstream>
+#include "person.h"
+#include "fileReader.h"
+#include <vector>
 using namespace std;
-fileWriter::fileWriter(){
+
+fileReader::fileReader(){
 
 }
 
-int fileWriter::Write()
-{
+int fileReader::Read() {
 
-    std::ifstream ifs("Personas.txt", std::ifstream::in);
-        if (!ifs.is_open())
-        {
-            std::cerr << "File \"Personas.txt\" can't be found" << std::endl;
-            return -1;
-        }
+    std::ifstream ifs("Personas copy.txt", std::ifstream::in);
+    if (!ifs.is_open())
+    {
+        std::cerr << "File \"Personas.txt\" can't be found" << std::endl;
+        return -1;
+    }
 
-    std::ofstream file("Personas.dat", std::ofstream::out);
-
-    //string where the line in the text file will be stored
+    
+    
     string line {""};
-
 
     //Reads the first 3 characters because they are not part of the file's content
     ifs.get();
     ifs.get();
     ifs.get();
 
-
     while (std::getline(ifs, line)) {
 
         try
         {
-
             std::istringstream stream(line);
 
             //variables where read values will be stored and then printed 
@@ -104,22 +102,21 @@ int fileWriter::Write()
                     email[i]=temp.at(i);
                 }
             }
-            
-    
+            Person person(id, name, lastname, email);// = new Person(id, name, lastname, email);
+            personvector.push_back(person);
 
-            file << id <<" "<< name << " "<<lastname<<" " << email << std::endl;
-
-
-            
         }
         catch (string &excepcion)
         {
             cerr << excepcion << endl;
         }
     }
-
-    cout<<"delete later"<< endl;
+    
     ifs.close();
-    file.close();
+
     return 0;
+}
+
+Person fileReader::personFinder(int id){
+    return personvector.at(id-1);
 }

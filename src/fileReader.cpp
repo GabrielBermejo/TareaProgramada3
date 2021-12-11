@@ -13,7 +13,7 @@ fileReader::fileReader(){
 
 int fileReader::Read() {
 
-    std::ifstream ifs("Personas copy.txt", std::ifstream::in);
+    std::ifstream ifs("Personas.txt", std::ifstream::in);
     if (!ifs.is_open())
     {
         std::cerr << "File \"Personas.txt\" can't be found" << std::endl;

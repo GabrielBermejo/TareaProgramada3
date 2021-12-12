@@ -15,10 +15,10 @@ fileReader::fileReader(){
 
 void fileReader::Read() {
 
-    std::ifstream ifs("Personas.txt", std::ifstream::in);
+    std::ifstream ifs("Personas.dat", std::ifstream::in);
     if (!ifs.is_open())
     {
-        std::cerr << "File \"Personas.txt\" can't be found" << std::endl;
+        std::cerr << "File \"Personas.dat\" can't be found" << std::endl;
         throw FileCouldntBeFoundException();
         exit(1);
     }

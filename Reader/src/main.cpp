@@ -1,5 +1,4 @@
 #include "fileReader.h"
-#include "fileWriter.h"
 #include "person.h"
 #include <iostream>
 #include <fstream>
@@ -9,11 +8,13 @@ int main() {
 
     fileReader *f = new fileReader;
     f->Read();
-    fileWriter *g = new fileWriter;
-    g->Write();
 
+    int input=0;
 
-    Person ten = f->personFinder(-1);
+    std::cout<< "Please type the ID of the person you are looking for: ";
+    std::cin>> input;
+
+    Person ten = f->personFinder(input);
 
     std::cout<<ten.getName()<<std::endl;
 

@@ -1,4 +1,4 @@
-#include "fileReader.h"
+
 #include "fileWriter.h"
 #include "person.h"
 #include <iostream>
@@ -7,15 +7,8 @@
 
 int main() {
 
-    fileReader *f = new fileReader;
-    f->Read();
     fileWriter *g = new fileWriter;
     g->Write();
-
-
-    Person ten = f->personFinder(-1);
-
-    std::cout<<ten.getName()<<std::endl;
 
     return 0;
 }

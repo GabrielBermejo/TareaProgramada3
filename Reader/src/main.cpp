@@ -15,7 +15,6 @@ int main() {
     std::cin>> input;
 
     Person ten = f->personFinder(input);
-
     std::cout<<ten.getName()<<std::endl;
 
     return 0;

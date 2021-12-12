@@ -18,13 +18,10 @@ void fileReader::Read() {
     std::ifstream ifs("Personas.dat", std::ifstream::in);
     if (!ifs.is_open())
     {
-        std::cerr << "File \"Personas.dat\" can't be found" << std::endl;
         throw FileCouldntBeFoundException();
         exit(1);
     }
 
-    
-    
     string line {""};
 
     //Reads the first 3 characters because they are not part of the file's content

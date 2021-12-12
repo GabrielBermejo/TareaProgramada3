@@ -1,6 +1,5 @@
 
 #include "fileWriter.h"
-#include "person.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>

@@ -7,6 +7,6 @@ class fileWriter{
 
     public:
     fileWriter();
-    int Write();
+    void Write();
 };
 #endif

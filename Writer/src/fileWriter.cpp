@@ -3,19 +3,20 @@
 #include <sstream>
 #include <string>
 #include "fileWriter.h"
+#include "FileCouldntBeFoundException.h"
 using namespace std;
 fileWriter::fileWriter(){
 
 }
 
-int fileWriter::Write()
+void fileWriter::Write()
 {
 
     std::ifstream ifs("Personas.txt", std::ifstream::in);
         if (!ifs.is_open())
         {
-            std::cerr << "File \"Personas.txt\" can't be found" << std::endl;
-            return -1;
+            throw FileCouldntBeFoundException();
+            exit(1);
         }
 
     std::ofstream file("Personas.dat", std::ofstream::out);
@@ -119,5 +120,4 @@ int fileWriter::Write()
     }
     ifs.close();
     file.close();
-    return 0;
 }
